@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:20:58 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/13 15:07:05 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/13 18:14:39 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,35 @@
 
 struct maps	ft_read_dim(struct maps maps, char **line, int flag)
 {
-	char    *ptr;
-	char    *ptr2;
-	char    *ptr3;
-	char    *num;
-	char    *num2;
+	char	**tmp;
 
-    ptr = ft_strchr(*line, ' ');
-    ptr2 = ft_strchr(ptr + 1, ' ');
-    ptr3 = ft_strchr(ptr2 + 1, '\0');
-    num = ft_strsub(ptr + 1, 0, ptr2 - ptr - 1);
-    num2 = ft_strsub(ptr2 + 1, 0, ptr3 - ptr2 - 1);
+	tmp = ft_strsplit(*line, ' ');
 	if (flag == 0)
 	{
-		maps.dim_x = ft_atoi(num);
-		maps.dim_y = ft_atoi(num2);
+		maps.dim_x = ft_atoi(tmp[1]);
+		maps.dim_y = ft_atoi(tmp[2]);
 	}
 	else
 	{
-		maps.dim_tx = ft_atoi(num);
-		maps.dim_ty = ft_atoi(num2);
+		maps.dim_tx = ft_atoi(tmp[1]);
+		maps.dim_ty = ft_atoi(tmp[2]);
 	}
 	return (maps);
+}
+
+void ft_player(char ** line, char *p1, char *p2)
+{
+	int ret;
+	//line = (char**)malloc(sizeof(*line) * 1);
+	ret = get_next_line(0, line);
+	while (ft_strncmp("$$$ exec p1", *line, 11) != 0)
+		ret = get_next_line(0, line);
+	p1 = ft_strchr(*line, ':') + 2;
+	//printf("player 1 : %s\n", p1);
+	while (ft_strncmp("$$$ exec p2", *line, 11) != 0)
+		ret = get_next_line(0, line);
+	p2 = ft_strchr(*line, ':') + 2;
+	//printf("player 2 : %s\n", p2);
 }
 
 struct maps		ft_init_map(int nrRows, char **map, char **t_map)
@@ -54,20 +61,21 @@ struct maps		ft_init_map(int nrRows, char **map, char **t_map)
 	char	*c_piece;
 	char	*name;
 	struct maps maps;
-	struct maps tmp;
-	struct maps tmp2;
 
+	line = NULL;
+	p1 = NULL;
+	p2 = NULL;
 	line = (char**)malloc(sizeof(*line) * 1);
-	ret = get_next_line(0, line);
+	ft_player(line, p1, p2);
+	/*ret = get_next_line(0, line);
 	while (ft_strncmp("$$$ exec p1", *line, 11) != 0)
 		ret = get_next_line(0, line);
 	p1 = ft_strchr(*line, ':') + 2;
 	printf("player 1 : %s\n", p1);
-	//ret = get_next_line(0, line);
 	while (ft_strncmp("$$$ exec p2", *line, 11) != 0)
 		ret = get_next_line(0, line);
 	p2 = ft_strchr(*line, ':') + 2;
-	printf("player 2 : %s\n", p2);
+	printf("player 2 : %s\n", p2);*/
 
 	name = " hiu ";
 	if (name == p1)
@@ -77,14 +85,10 @@ struct maps		ft_init_map(int nrRows, char **map, char **t_map)
 
 	ret = get_next_line(0, line);
 	maps.map = NULL;
-	tmp = ft_read_dim(maps, line, 0);
-	maps.dim_x = tmp.dim_x;
-	maps.dim_y = tmp.dim_y;
+	maps.t_map = NULL;
+	maps = ft_read_dim(maps, line, 0);
 	maps.map = ft_read_map(maps, 0, map);
-	tmp2 = ft_read_token(maps, nrRows, t_map);
-	maps.t_map = tmp2.t_map;
-	maps.dim_tx = tmp2.dim_tx;
-	maps.dim_ty = tmp2.dim_ty;
+	maps = ft_read_token(maps, nrRows, t_map);
 	return (maps);
 }
 
