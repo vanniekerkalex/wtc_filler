@@ -6,7 +6,7 @@
 /*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/15 15:38:17 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/15 16:48:33 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ struct maps {
 	int	dim_tx;
 	int	dim_ty;
 };
+
+struct token {
+	int	row_top;
+	int	col_left;
+	int	row_bottom;
+	int	col_right;
+};
+
 
 struct maps			ft_init_map(int nrRows, char **map, char **t_map);
 char				**ft_read_map(struct maps maps, int flag, char **map);
