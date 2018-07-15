@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void   ft_trim_top(struct maps maps)
+struct token	ft_trim_top(struct maps maps)
 {
 	int i;
 	int j;
@@ -37,6 +37,9 @@ void   ft_trim_top(struct maps maps)
 			i++;
 	}
 	ft_trim_bottom(maps, t);
+	ft_trim_left(maps, t);
+	ft_trim_right(maps, t);
+	return (t);
 }
 
 void   ft_trim_bottom(struct maps maps, struct token t)
@@ -62,7 +65,6 @@ void   ft_trim_bottom(struct maps maps, struct token t)
 			t.row_bottom++;
 		i--;
 	}
-	ft_trim_left(maps, t);
 }
 
 void   ft_trim_left(struct maps maps, struct token t)
@@ -89,10 +91,9 @@ void   ft_trim_left(struct maps maps, struct token t)
 			t.col_left++;
 		j++;
 	}
-	ft_trim_right(maps, t);
 }
 
-struct token    ft_trim_bottom(struct maps maps, struct token t)
+void	ft_trim_bottom(struct maps maps, struct token t)
 {
 	int i;
 	int j;
@@ -115,5 +116,4 @@ struct token    ft_trim_bottom(struct maps maps, struct token t)
 			t.row_bottom++;
 		j--;
 	}
-	return (t);
 }
