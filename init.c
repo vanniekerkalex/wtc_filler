@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:35:29 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/15 15:38:15 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/15 16:19:35 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void ft_player(char ** line, char c_piece)
 		c_piece = 'o';
 	else
 		c_piece = 'x';
-	write(1, "hi", 2);
-	write(1, &c_piece, 1);
+	write(1, "hi", 2);		//just to see
+	write(1, &c_piece, 1);	//if piece is 'o' or 'x'
 }
 
 struct maps		ft_init_map(int nrRows, char **map, char **t_map)
