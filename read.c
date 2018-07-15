@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:20:58 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/13 18:14:39 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/15 13:35:27 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,51 +37,31 @@ struct maps	ft_read_dim(struct maps maps, char **line, int flag)
 	return (maps);
 }
 
-void ft_player(char ** line, char *p1, char *p2)
+void ft_player(char ** line, char c_piece)
 {
 	int ret;
 	//line = (char**)malloc(sizeof(*line) * 1);
 	ret = get_next_line(0, line);
-	while (ft_strncmp("$$$ exec p1", *line, 11) != 0)
+	while (ft_strncmp("$$$ exec p", *line, 10) != 0)
 		ret = get_next_line(0, line);
-	p1 = ft_strchr(*line, ':') + 2;
-	//printf("player 1 : %s\n", p1);
-	while (ft_strncmp("$$$ exec p2", *line, 11) != 0)
-		ret = get_next_line(0, line);
-	p2 = ft_strchr(*line, ':') + 2;
-	//printf("player 2 : %s\n", p2);
+	if (ft_strncmp(ft_strchr(*line, ':') - 2, "1", 1) == 0)
+		c_piece = 'o';
+	else
+		c_piece = 'x';
+	write(1, "hi", 2);
+	write(1, &c_piece, 1);
 }
 
 struct maps		ft_init_map(int nrRows, char **map, char **t_map)
 {
 	int		ret;
 	char	**line;
-	char	*p1;
-	char	*p2;
-	char	*c_piece;
-	char	*name;
+	char	c_piece = '\0';
 	struct maps maps;
 
 	line = NULL;
-	p1 = NULL;
-	p2 = NULL;
 	line = (char**)malloc(sizeof(*line) * 1);
-	ft_player(line, p1, p2);
-	/*ret = get_next_line(0, line);
-	while (ft_strncmp("$$$ exec p1", *line, 11) != 0)
-		ret = get_next_line(0, line);
-	p1 = ft_strchr(*line, ':') + 2;
-	printf("player 1 : %s\n", p1);
-	while (ft_strncmp("$$$ exec p2", *line, 11) != 0)
-		ret = get_next_line(0, line);
-	p2 = ft_strchr(*line, ':') + 2;
-	printf("player 2 : %s\n", p2);*/
-
-	name = " hiu ";
-	if (name == p1)
-		c_piece = "o";
-	else
-		c_piece = "x";
+	ft_player(line, c_piece);
 
 	ret = get_next_line(0, line);
 	maps.map = NULL;

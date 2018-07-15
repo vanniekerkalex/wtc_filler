@@ -6,7 +6,7 @@
 /*   By: avan-ni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 14:56:57 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/06/20 13:44:21 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/15 13:15:45 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# define BUFF_SIZE 100
+# define MAX_FD 2147483647
 
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
@@ -106,5 +108,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list*elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+int				get_next_line(const int fd, char **line);
 
 #endif
