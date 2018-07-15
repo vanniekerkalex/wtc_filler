@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:20:58 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/15 15:38:13 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/15 16:09:53 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <stdio.h>
 
-void	pop_map(char **line, char **map, int rows, int flag);
+void		pop_map(char **line, char **map, int rows, int flag);
 
 struct maps	ft_read_dim(struct maps maps, char **line, int flag)
 {
@@ -33,43 +33,7 @@ struct maps	ft_read_dim(struct maps maps, char **line, int flag)
 	return (maps);
 }
 
-/*void ft_player(char ** line, char c_piece)
-{
-	int ret;
-
-	ret = get_next_line(0, line);
-	while (ft_strncmp("$$$ exec p", *line, 10) != 0)
-		ret = get_next_line(0, line);
-	if (ft_strncmp(ft_strchr(*line, ':') - 2, "1", 1) == 0)
-		c_piece = 'o';
-	else
-		c_piece = 'x';
-	write(1, "hi", 2);
-	write(1, &c_piece, 1);
-}*/
-
-/*struct maps		ft_init_map(int nrRows, char **map, char **t_map)
-{
-	int		ret;
-	char	**line;
-	char	c_piece;
-	struct maps maps;
-
-	line = NULL;
-	c_piece = '\0';
-	line = (char**)malloc(sizeof(*line) * 1);
-	ft_player(line, c_piece);
-
-	ret = get_next_line(0, line); //Plateau
-	maps.map = NULL;
-	maps.t_map = NULL;
-	maps = ft_read_dim(maps, line, 0);
-	maps.map = ft_read_map(maps, 0, map);
-	maps = ft_read_token(maps, nrRows, t_map);
-	return (maps);
-}*/
-
-char	**ft_read_map(struct maps maps, int flag, char **map)
+char		**ft_read_map(struct maps maps, int flag, char **map)
 {
 	int		ret;
 	int		i;
@@ -77,20 +41,20 @@ char	**ft_read_map(struct maps maps, int flag, char **map)
 
 	i = 0;
 	line = (char**)malloc(sizeof(*line) * maps.dim_x);
-	ret = get_next_line(0, line); //bunch of nums at beginning
-	if (flag == 1) //After initail read map
-		ret = get_next_line(0, line); //skips nums
-    map = (char**)malloc(sizeof(char*) * (maps.dim_x + 1));
-    while (i < maps.dim_x)
-    {
-        map[i] = (char*)malloc(sizeof(char) * (maps.dim_y + 1));
-        i++;
+	ret = get_next_line(0, line);
+	if (flag == 1)
+		ret = get_next_line(0, line);
+	map = (char**)malloc(sizeof(char*) * (maps.dim_x + 1));
+	while (i < maps.dim_x)
+	{
+		map[i] = (char*)malloc(sizeof(char) * (maps.dim_y + 1));
+		i++;
 	}
 	pop_map(line, map, maps.dim_x, 1);
 	return (map);
 }
 
-struct maps		ft_read_token(struct maps maps, int t_nrRows, char **t_map)
+struct maps	ft_read_token(struct maps maps, int t_nrRows, char **t_map)
 {
 	int		ret;
 	int		i;
@@ -101,11 +65,11 @@ struct maps		ft_read_token(struct maps maps, int t_nrRows, char **t_map)
 	maps.dim_tx = ft_read_dim(maps, line, 1).dim_tx;
 	maps.dim_ty = ft_read_dim(maps, line, 1).dim_ty;
 	i = 0;
-	line = (char**)malloc(sizeof(*line) * maps.dim_tx);
-	t_map = (char**)malloc(sizeof(char*) * maps.dim_tx);
+	line = (char**)malloc(sizeof(*line) * (maps.dim_tx + 1));
+	t_map = (char**)malloc(sizeof(char*) * (maps.dim_tx + 1));
 	while (i < maps.dim_ty)
 	{
-		t_map[i] = (char*)malloc(sizeof(char) * maps.dim_ty);
+		t_map[i] = (char*)malloc(sizeof(char) * (maps.dim_ty + 1));
 		i++;
 	}
 	t_nrRows = maps.dim_tx;
@@ -114,11 +78,11 @@ struct maps		ft_read_token(struct maps maps, int t_nrRows, char **t_map)
 	return (maps);
 }
 
-void	pop_map(char **line, char **map, int rows, int flag)
+void		pop_map(char **line, char **map, int rows, int flag)
 {
-	int i;
-	size_t j;
-	int ret;
+	int		i;
+	size_t	j;
+	int		ret;
 
 	i = 0;
 	while (i < rows)
@@ -138,7 +102,7 @@ void	pop_map(char **line, char **map, int rows, int flag)
 	map[i] = NULL;
 }
 
-void	print_map(char **map)
+void		print_map(char **map)
 {
 	int i;
 	int j;
