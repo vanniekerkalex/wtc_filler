@@ -6,13 +6,13 @@
 /*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:35:29 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/15 16:19:35 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/15 16:40:56 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void ft_player(char ** line, char c_piece)
+void		ft_player(char **line, char c_piece)
 {
 	int ret;
 
@@ -27,18 +27,17 @@ void ft_player(char ** line, char c_piece)
 	write(1, &c_piece, 1);	//if piece is 'o' or 'x'
 }
 
-struct maps		ft_init_map(int nrRows, char **map, char **t_map)
+struct maps	ft_init_map(int nrRows, char **map, char **t_map)
 {
-	int		ret;
-	char	**line;
-	char	c_piece;
-	struct maps maps;
+	int			ret;
+	char		**line;
+	char		c_piece;
+	struct maps	maps;
 
 	line = NULL;
 	c_piece = '\0';
 	line = (char**)malloc(sizeof(*line) * 1);
 	ft_player(line, c_piece);
-
 	ret = get_next_line(0, line); //Plateau
 	maps.map = NULL;
 	maps.t_map = NULL;
