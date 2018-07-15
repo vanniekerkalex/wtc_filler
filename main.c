@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/10 09:04:42 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:02:57 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(void)
 	int i = 0;
 	nrRows = 0;
 	map = NULL;
-	maps = ft_init_map(nrRows, map, t_map);
+	maps = ft_init_map(map, map);
 	printf("\n*****MAP*****\n");
 	print_map(maps.map);
 	printf("\n*****TOKEN*****\n");
@@ -31,8 +31,8 @@ int	main(void)
 //	printf("MAP\nX : %i\nY : %i\nTOKEN\nX : %i\nY : %i\n", maps.dim_x, maps.dim_y, maps.dim_tx, maps.dim_ty);
 	while (i < 2)
 	{
-		maps.map = ft_read_map(maps, 1, map);
-		tmp = ft_read_token(maps, nrRows, t_map);
+		maps = ft_read_token(maps, 1, map);
+		tmp = ft_read_token(maps, 2, t_map);
 	    maps.t_map = tmp.t_map;
 	    maps.dim_tx = tmp.dim_tx;
 	    maps.dim_ty = tmp.dim_ty;
