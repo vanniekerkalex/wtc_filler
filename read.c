@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:20:58 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/15 15:03:12 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:30:42 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void ft_player(char ** line, char c_piece)
 	write(1, &c_piece, 1);
 }
 
-struct maps		ft_init_map(char **map, char **t_map)
+struct maps		ft_init_map(int nrRows, char **map, char **t_map)
 {
 	int		ret;
 	char	**line;
@@ -70,13 +70,12 @@ struct maps		ft_init_map(char **map, char **t_map)
 	maps.map = NULL;
 	maps.t_map = NULL;
 	maps = ft_read_dim(maps, line, 0);
-	//maps.map = ft_read_map(maps, 0, map);
-	maps = ft_read_token(maps, 0, map);
-	maps = ft_read_token(maps, 2, t_map);
+	maps.map = ft_read_map(maps, 0, map);
+	maps = ft_read_token(maps, nrRows, t_map);
 	return (maps);
 }
 
-/*char	**ft_read_map(struct maps maps, int flag, char **map)
+char	**ft_read_map(struct maps maps, int flag, char **map)
 {
 	int		ret;
 	int		i;
@@ -95,37 +94,29 @@ struct maps		ft_init_map(char **map, char **t_map)
 	}
 	pop_map(line, map, maps.dim_x, 1);
 	return (map);
-}*/
+}
 
-struct maps		ft_read_token(struct maps maps, int flag, char **t_map)
+struct maps		ft_read_token(struct maps maps, int t_nrRows, char **t_map)
 {
+	int		ret;
 	int		i;
 	char	**line;
-	int	rows;
-	int cols;
 
-	line = (char**)malloc(sizeof(char*) * (maps.dim_x + 1));
-	get_next_line(0, line); //Piece dim
-	rows = maps.dim_x;
-	cols = maps.dim_y;
-	if (flag == 1) //After initail read map
-		get_next_line(0, line); //skips nums
-	if (flag == 2)
-	{
-		maps = ft_read_dim(maps, line, 1);
-		rows = maps.dim_tx;
-		cols = maps.dim_ty;
-	}
+	line = (char**)malloc(sizeof(char*) * (t_nrRows + 1));
+	ret = get_next_line(0, line);
+	maps.dim_tx = ft_read_dim(maps, line, 1).dim_tx;
+	maps.dim_ty = ft_read_dim(maps, line, 1).dim_ty;
 	i = 0;
-	line = (char**)malloc(sizeof(*line) * rows);//maps.dim_tx);
-	t_map = (char**)malloc(sizeof(char*) * rows);//maps.dim_tx);
-	while (i < cols)//maps.dim_ty)
-		t_map[i++] = (char*)malloc(sizeof(char) * cols);//maps.dim_ty);
-	pop_map(line, t_map, rows, flag);
-	if (flag == 2)
-		maps.t_map = t_map;
-	else
-		maps.map = t_map;
+	line = (char**)malloc(sizeof(*line) * maps.dim_tx);
+	t_map = (char**)malloc(sizeof(char*) * maps.dim_tx);
+	while (i < maps.dim_ty)
+	{
+		t_map[i] = (char*)malloc(sizeof(char) * maps.dim_ty);
+		i++;
+	}
+	t_nrRows = maps.dim_tx;
+	pop_map(line, t_map, t_nrRows, 2);
+	maps.t_map = t_map;
 	return (maps);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/15 15:02:57 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:30:44 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(void)
 	int i = 0;
 	nrRows = 0;
 	map = NULL;
-	maps = ft_init_map(map, map);
+	maps = ft_init_map(nrRows, map, map);
 	printf("\n*****MAP*****\n");
 	print_map(maps.map);
 	printf("\n*****TOKEN*****\n");
@@ -31,7 +31,7 @@ int	main(void)
 //	printf("MAP\nX : %i\nY : %i\nTOKEN\nX : %i\nY : %i\n", maps.dim_x, maps.dim_y, maps.dim_tx, maps.dim_ty);
 	while (i < 2)
 	{
-		maps = ft_read_token(maps, 1, map);
+		maps.map = ft_read_map(maps, 1, map);
 		tmp = ft_read_token(maps, 2, t_map);
 	    maps.t_map = tmp.t_map;
 	    maps.dim_tx = tmp.dim_tx;
