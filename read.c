@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:20:58 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/15 15:30:42 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/15 15:38:13 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <stdio.h>
-
-/*
-**
-**
-**
-*/
 
 void	pop_map(char **line, char **map, int rows, int flag);
 
@@ -39,7 +33,7 @@ struct maps	ft_read_dim(struct maps maps, char **line, int flag)
 	return (maps);
 }
 
-void ft_player(char ** line, char c_piece)
+/*void ft_player(char ** line, char c_piece)
 {
 	int ret;
 
@@ -52,9 +46,9 @@ void ft_player(char ** line, char c_piece)
 		c_piece = 'x';
 	write(1, "hi", 2);
 	write(1, &c_piece, 1);
-}
+}*/
 
-struct maps		ft_init_map(int nrRows, char **map, char **t_map)
+/*struct maps		ft_init_map(int nrRows, char **map, char **t_map)
 {
 	int		ret;
 	char	**line;
@@ -73,7 +67,7 @@ struct maps		ft_init_map(int nrRows, char **map, char **t_map)
 	maps.map = ft_read_map(maps, 0, map);
 	maps = ft_read_token(maps, nrRows, t_map);
 	return (maps);
-}
+}*/
 
 char	**ft_read_map(struct maps maps, int flag, char **map)
 {
