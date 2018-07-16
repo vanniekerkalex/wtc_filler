@@ -6,7 +6,7 @@
 /*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/16 13:00:18 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/16 13:11:31 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(void)
 	print_map(maps.map);
 	printf("\n*****TOKEN*****\n");
 	print_map(maps.t_map);
-	ft_trim_top(maps); // Testing Trim.c
+	ft_trim(maps); // Testing Trim.c
 //	printf("MAP\nX : %i\nY : %i\nTOKEN\nX : %i\nY : %i\n", maps.dim_x, maps.dim_y, maps.dim_tx, maps.dim_ty);
 	while (i < 2)
 	{
@@ -41,7 +41,7 @@ int	main(void)
 	    print_map(maps.map);
 	    printf("\n*****TOKEN*****\n");
 	    print_map(maps.t_map);
-		ft_trim_top(maps); // Testing Trim.c
+		ft_trim(maps); // Testing Trim.c
 		maps.map = NULL;
 		maps.t_map = NULL;
 		i++;
