@@ -6,11 +6,15 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:54:34 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/15 16:59:49 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/16 12:20:42 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void			ft_trim_bottom(struct maps maps, struct token t);
+void			ft_trim_left(struct maps maps, struct token t);
+void			ft_trim_right(struct maps maps, struct token t);
 
 struct token	ft_trim_top(struct maps maps)
 {
@@ -42,7 +46,7 @@ struct token	ft_trim_top(struct maps maps)
 	return (t);
 }
 
-void			t_trim_bottom(struct maps maps, struct token t)
+void			ft_trim_bottom(struct maps maps, struct token t)
 {
 	int i;
 	int j;
@@ -110,7 +114,7 @@ void			ft_trim_right(struct maps maps, struct token t)
 				count++;
 		}
 		if (count > 0)
-			return (t);
+			break ;
 		else
 			t.col_right++;
 		j--;

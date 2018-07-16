@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:20:58 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/15 16:09:53 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/16 12:20:43 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ struct maps	ft_read_dim(struct maps maps, char **line, int flag)
 	tmp = ft_strsplit(*line, ' ');
 	if (flag == 0)
 	{
-		maps.dim_x = ft_atoi(tmp[1]);
-		maps.dim_y = ft_atoi(tmp[2]);
+		maps.dim_y = ft_atoi(tmp[1]);
+		maps.dim_x = ft_atoi(tmp[2]);
 	}
 	else
 	{
-		maps.dim_tx = ft_atoi(tmp[1]);
-		maps.dim_ty = ft_atoi(tmp[2]);
+		maps.dim_ty = ft_atoi(tmp[1]);
+		maps.dim_tx = ft_atoi(tmp[2]);
 	}
 	return (maps);
 }
@@ -40,17 +40,17 @@ char		**ft_read_map(struct maps maps, int flag, char **map)
 	char	**line;
 
 	i = 0;
-	line = (char**)malloc(sizeof(*line) * maps.dim_x);
+	line = (char**)malloc(sizeof(*line) * maps.dim_y);
 	ret = get_next_line(0, line);
 	if (flag == 1)
 		ret = get_next_line(0, line);
-	map = (char**)malloc(sizeof(char*) * (maps.dim_x + 1));
-	while (i < maps.dim_x)
+	map = (char**)malloc(sizeof(char*) * (maps.dim_y + 1));
+	while (i < maps.dim_y)
 	{
-		map[i] = (char*)malloc(sizeof(char) * (maps.dim_y + 1));
+		map[i] = (char*)malloc(sizeof(char) * (maps.dim_x + 1));
 		i++;
 	}
-	pop_map(line, map, maps.dim_x, 1);
+	pop_map(line, map, maps.dim_y, 1);
 	return (map);
 }
 
@@ -62,17 +62,18 @@ struct maps	ft_read_token(struct maps maps, int t_nrRows, char **t_map)
 
 	line = (char**)malloc(sizeof(char*) * (t_nrRows + 1));
 	ret = get_next_line(0, line);
-	maps.dim_tx = ft_read_dim(maps, line, 1).dim_tx;
-	maps.dim_ty = ft_read_dim(maps, line, 1).dim_ty;
+	maps = ft_read_dim(maps, line, 1);
+	//maps.dim_ty = ft_read_dim(maps, line, 1).dim_ty;
+	//maps.dim_tx = ft_read_dim(maps, line, 1).dim_tx;
 	i = 0;
-	line = (char**)malloc(sizeof(*line) * (maps.dim_tx + 1));
-	t_map = (char**)malloc(sizeof(char*) * (maps.dim_tx + 1));
-	while (i < maps.dim_ty)
+	line = (char**)malloc(sizeof(*line) * (maps.dim_ty + 1));
+	t_map = (char**)malloc(sizeof(char*) * (maps.dim_ty + 1));
+	while (i < maps.dim_tx)
 	{
-		t_map[i] = (char*)malloc(sizeof(char) * (maps.dim_ty + 1));
+		t_map[i] = (char*)malloc(sizeof(char) * (maps.dim_tx + 1));
 		i++;
 	}
-	t_nrRows = maps.dim_tx;
+	t_nrRows = maps.dim_ty;
 	pop_map(line, t_map, t_nrRows, 2);
 	maps.t_map = t_map;
 	return (maps);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/15 15:30:44 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/16 12:20:44 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(void)
 		maps.map = ft_read_map(maps, 1, map);
 		tmp = ft_read_token(maps, 2, t_map);
 	    maps.t_map = tmp.t_map;
-	    maps.dim_tx = tmp.dim_tx;
 	    maps.dim_ty = tmp.dim_ty;
+	    maps.dim_tx = tmp.dim_tx;
 		printf("\n*****MAP*****\n");
 	    print_map(maps.map);
 	    printf("\n*****TOKEN*****\n");
