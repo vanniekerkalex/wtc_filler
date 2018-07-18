@@ -6,7 +6,7 @@
 /*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/16 14:31:37 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/18 12:55:37 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ struct maps			ft_read_token(struct maps maps, int t_nrRows, char **t_map);
 void				print_map(char **map);
 struct maps			ft_read_dim(struct maps maps, char **line, int flag);
 
-struct token	ft_trim(struct maps maps);
+struct token		ft_trim(struct maps maps);
+char				**init_heatmap(struct maps maps);
+int					**find_enemy_token(struct maps maps, int **heatmap, char c_piece);
 
 #endif
