@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 15:48:17 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/18 17:14:44 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/18 18:13:07 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int     check_overlap(struct maps maps, int **heatmap, struct token token, struc
 
     i = 0;
     count  = 0;
-    (maps.c_piece == 'x') ? (piece = -2) : (piece = -1);
+    (maps.c_piece == 'x') ? (piece = -1) : (piece = -2);
     while (i < maps.dim_ty - token.row_top - token.row_bottom)
     {
         j = 0;
@@ -70,6 +70,8 @@ int     check_overlap(struct maps maps, int **heatmap, struct token token, struc
         }
         i++;
     }
+    if (count == 0)
+        return (0);
     return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/18 17:14:21 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/18 18:13:10 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	main(void)
 	heat = find_enemy_token(maps, heat);
 	//print_heatmap(maps, heat);
 	score = find_coords(maps, heat, ft_trim(maps));
-	printf("%d %d\n", score.y, score.x);
+	ft_putnbr(score.y);
+	write(1, " ", 1);
+	ft_putnbr(score.x);
+	write(1, "\n", 1);
 //	printf("MAP\nX : %i\nY : %i\nTOKEN\nX : %i\nY : %i\n", maps.dim_x, maps.dim_y, maps.dim_tx, maps.dim_ty);
 	/*while (i < 2)
 	{
