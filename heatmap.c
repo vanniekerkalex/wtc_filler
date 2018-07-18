@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heatmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 19:51:10 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/18 14:24:59 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/18 16:49:50 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	**init_heatmap(struct maps maps)
 	return (heatmap);
 }
 
-int		**find_enemy_token(struct maps maps, int **heatmap, char c_piece)
+int		**find_enemy_token(struct maps maps, int **heatmap)
 {
 	int piece;
 	int i;
 	int j;
 
 	i = 0;
-	(c_piece == 'x') ? (piece = -2) : (piece = -1);
+	(maps.c_piece == 'x') ? (piece = -2) : (piece = -1);
 	while (i < maps.dim_y)
 	{
 		j = 0;

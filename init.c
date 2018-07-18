@@ -6,13 +6,13 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:35:29 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/16 12:20:45 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/18 17:15:00 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void		ft_player(char **line, char c_piece)
+struct maps		ft_player(char **line, struct maps maps)
 {
 	int ret;
 
@@ -20,24 +20,24 @@ void		ft_player(char **line, char c_piece)
 	while (ft_strncmp("$$$ exec p", *line, 10) != 0)
 		ret = get_next_line(0, line);
 	if (ft_strncmp(ft_strchr(*line, ':') - 2, "1", 1) == 0)
-		c_piece = 'o';
+		maps.c_piece = 'o';
 	else
-		c_piece = 'x';
-	write(1, "hi", 2);		//just to see
-	write(1, &c_piece, 1);	//if piece is 'o' or 'x'
+		maps.c_piece = 'x';
+	//write(1, "hi", 2);		//just to see
+	//write(1, &maps.c_piece, 1);	//if piece is 'o' or 'x'
+	return (maps);
 }
 
 struct maps	ft_init_map(int nrRows, char **map, char **t_map)
 {
 	int			ret;
 	char		**line;
-	char		c_piece;
 	struct maps	maps;
 
 	line = NULL;
-	c_piece = '\0';
+	maps.c_piece = '\0';
 	line = (char**)malloc(sizeof(*line) * 1);
-	ft_player(line, c_piece);
+	maps = ft_player(line, maps);
 	ret = get_next_line(0, line); //Plateau
 	maps.map = NULL;
 	maps.t_map = NULL;

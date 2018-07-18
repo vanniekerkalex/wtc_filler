@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/18 13:59:52 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/18 17:14:21 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,31 @@ int	main(void)
 {
 	int nrRows;
 	char **map = NULL;
-	char **t_map = NULL;
+	//char **t_map = NULL;
 	struct maps maps;
-	struct maps tmp;
+	//struct maps tmp;
+	struct score score;
 
-	int i = 0;
+	//int i = 0;
 	nrRows = 0;
 	map = NULL;
 	maps = ft_init_map(nrRows, map, map);
-	printf("\n*****MAP*****\n");
-	print_map(maps.map);
-	printf("\n*****TOKEN*****\n");
-	print_map(maps.t_map);
-	ft_trim(maps); // Testing Trim.c
+	//printf("\n*****MAP*****\n");
+	//print_map(maps.map);
+	//printf("\n*****TOKEN*****\n");
+	//print_map(maps.t_map);
+	//ft_trim(maps); // Testing Trim.c
 	int **heat;
-	printf("\n*****INIT HEAT*****\n");
+	//printf("\n*****INIT HEAT*****\n");
 	heat = init_heatmap(maps);
-	print_heatmap(maps, heat);
-	printf("\n*****HEATMAP*****\n");
-	heat = find_enemy_token(maps, heat, 'x');
-	print_heatmap(maps, heat);
+	//print_heatmap(maps, heat);
+	//printf("\n*****HEATMAP*****\n");
+	heat = find_enemy_token(maps, heat);
+	//print_heatmap(maps, heat);
+	score = find_coords(maps, heat, ft_trim(maps));
+	printf("%d %d\n", score.y, score.x);
 //	printf("MAP\nX : %i\nY : %i\nTOKEN\nX : %i\nY : %i\n", maps.dim_x, maps.dim_y, maps.dim_tx, maps.dim_ty);
-	while (i < 2)
+	/*while (i < 2)
 	{
 		maps.map = ft_read_map(maps, 1, map);
 		tmp = ft_read_token(maps, 2, t_map);
@@ -58,7 +61,7 @@ int	main(void)
 		maps.map = NULL;
 		maps.t_map = NULL;
 		i++;
-	}
+	}*/
 //	print_map(map);
 //	write(1, "yo", 2);
 //	tmp = ft_read_token(maps, nrRows, t_map);
