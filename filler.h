@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/18 12:55:37 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/18 13:09:54 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void				print_map(char **map);
 struct maps			ft_read_dim(struct maps maps, char **line, int flag);
 
 struct token		ft_trim(struct maps maps);
-char				**init_heatmap(struct maps maps);
+int					**init_heatmap(struct maps maps);
 int					**find_enemy_token(struct maps maps, int **heatmap, char c_piece);
+void				print_heatmap(struct maps maps, int **heatmap);
 
 #endif

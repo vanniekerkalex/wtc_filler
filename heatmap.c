@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heatmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 19:51:10 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/18 12:58:54 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/18 14:24:59 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 #include <stdio.h>
 
 /* Duplicates maps into heatmap */
-char	**init_heatmap(struct maps maps)
+int		**fill_heatmap(struct maps maps, int **heatmap, int y, int x);
+void print_heatmap(struct maps maps, int **heatmap);
+int	check_boundary(struct maps maps, int tx, int ty);
+
+int	**init_heatmap(struct maps maps)
 {
 	int i;
 	int j;
@@ -29,9 +33,9 @@ char	**init_heatmap(struct maps maps)
 		while (j < maps.dim_x)
 		{
 			heatmap[i][j] = 0;
-			if (maps.map[i][j] == 'X')
+			if (maps.map[i][j] == 'X' || maps.map[i][j] == 'x')
 				heatmap[i][j] = -1;
-			if (maps.map[i][j] == 'O')
+			if (maps.map[i][j] == 'O' || maps.map[i][j] == 'o')
 				heatmap[i][j] = -2;
 			j++;
 		}
@@ -55,7 +59,9 @@ int		**find_enemy_token(struct maps maps, int **heatmap, char c_piece)
 		{
 			if (heatmap[i][j] == piece)
 			{
-				heatmap = fill_heatmap(heatmap, i, j);
+				//write(1, "b4", 2);
+				heatmap = fill_heatmap(maps, heatmap, i, j);
+				//write(1, "af", 2);
 			}
 			j++;
 		}
@@ -77,17 +83,41 @@ int		**fill_heatmap(struct maps maps, int **heatmap, int y, int x)
 	{
 		ty = y + i;
 		tx = x + i;
-		while (ty-- >= y - i) // Loop 1 - up
-			((ty + 1 < dim_y) && heatmap[ty + 1][tx] <= score) && (heatmap[ty + 1][tx] = max - i);
-		while (tx-- >= x - i) // Loop 2 - left
-			((tx + 1 < dim_x) && heatmap[ty][tx + 1] <= score) && (heatmap[ty][tx + 1] = max - i);
-		while (ty++ <= y + i) // Loop 3 - down
-			((ty - 1 >= 0) && heatmap[ty - 1][tx] <= score) && (heatmap[ty - 1][tx] = max - i);
-		while (tx++ <= x + i) // Loop 4 - right
-			((tx - 1 >= 0) && heatmap[ty][tx - 1] <= score) && (heatmap[ty][tx - 1] = max - i);
+		while (ty >= y - i) // Loop 1 - up
+		{
+			(check_boundary(maps, tx, ty) && heatmap[ty][tx] >= 0 && heatmap[ty][tx] <= max - i) && (heatmap[ty][tx] = max - i);
+			ty--;
+		}
+		ty++;
+		while (tx >= x - i) // Loop 2 - left
+		{
+			(check_boundary(maps, tx, ty) && heatmap[ty][tx] >= 0 && heatmap[ty][tx] <= max - i) && (heatmap[ty][tx] = max - i);
+			tx--;
+		}
+		tx++;
+		while (ty <= y + i) // Loop 3 - down
+		{
+			(check_boundary(maps, tx, ty) && heatmap[ty][tx] >= 0 && heatmap[ty][tx] <= max - i) && (heatmap[ty][tx] = max - i);
+			ty++;
+		}
+		ty--;
+		while (tx <= x + i) // Loop 4 - right
+		{
+			(check_boundary(maps, tx, ty) && heatmap[ty][tx] >= 0 && heatmap[ty][tx] <= max - i) && (heatmap[ty][tx] = max - i);
+			tx++;
+		}
+		tx--;
 		i++;
 	}
 	return (heatmap);
+}
+
+int	check_boundary(struct maps maps, int tx, int ty)
+{
+	if (tx < maps.dim_x && tx >= 0 && ty < maps.dim_y && ty >= 0)
+		return(1);
+	else
+		return (0);
 }
 
 void print_heatmap(struct maps maps, int **heatmap)

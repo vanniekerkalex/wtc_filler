@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/16 14:31:32 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/18 13:59:52 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ int	main(void)
 	printf("\n*****TOKEN*****\n");
 	print_map(maps.t_map);
 	ft_trim(maps); // Testing Trim.c
+	int **heat;
+	printf("\n*****INIT HEAT*****\n");
+	heat = init_heatmap(maps);
+	print_heatmap(maps, heat);
+	printf("\n*****HEATMAP*****\n");
+	heat = find_enemy_token(maps, heat, 'x');
+	print_heatmap(maps, heat);
 //	printf("MAP\nX : %i\nY : %i\nTOKEN\nX : %i\nY : %i\n", maps.dim_x, maps.dim_y, maps.dim_tx, maps.dim_ty);
 	while (i < 2)
 	{
@@ -42,6 +49,12 @@ int	main(void)
 	    printf("\n*****TOKEN*****\n");
 	    print_map(maps.t_map);
 		ft_trim(maps); // Testing Trim.c
+		printf("\n*****INIT HEAT*****\n");
+		heat = init_heatmap(maps);
+		print_heatmap(maps, heat);
+		printf("\n*****HEATMAP*****\n");
+		heat = find_enemy_token(maps, heat, 'x');
+		print_heatmap(maps, heat);
 		maps.map = NULL;
 		maps.t_map = NULL;
 		i++;
