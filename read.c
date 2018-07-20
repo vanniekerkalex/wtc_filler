@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:20:58 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/18 16:01:19 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/20 15:03:03 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		**ft_read_map(struct maps maps, int flag, char **map)
 	char	**line;
 
 	i = 0;
-	line = (char**)malloc(sizeof(*line) * maps.dim_y);
+	line = (char**)malloc(sizeof(*line) * maps.dim_x + 1);
 	ret = get_next_line(0, line);
 	if (flag == 1)
 		ret = get_next_line(0, line);
@@ -60,13 +60,13 @@ struct maps	ft_read_token(struct maps maps, int t_nrRows, char **t_map)
 	int		i;
 	char	**line;
 
-	line = (char**)malloc(sizeof(char*) * (t_nrRows + 1));
+	line = (char**)malloc(sizeof(char*) * (maps.dim_x + 1));
 	ret = get_next_line(0, line);
 	maps = ft_read_dim(maps, line, 1);
 	//maps.dim_ty = ft_read_dim(maps, line, 1).dim_ty;
 	//maps.dim_tx = ft_read_dim(maps, line, 1).dim_tx;
 	i = 0;
-	line = (char**)malloc(sizeof(*line) * (maps.dim_ty + 1));
+	line = (char**)malloc(sizeof(*line) * (maps.dim_tx + 1));
 	t_map = (char**)malloc(sizeof(char*) * (maps.dim_ty + 1));
 	while (i < maps.dim_tx)
 	{

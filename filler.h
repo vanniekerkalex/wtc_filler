@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/18 16:45:41 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/20 12:43:35 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int					**init_heatmap(struct maps maps);
 int					**find_enemy_token(struct maps maps, int **heatmap);
 void				print_heatmap(struct maps maps, int **heatmap);
 int					check_boundary(struct maps maps, int tx, int ty);
-struct score		find_coords(struct maps maps, int **heatmap, struct token token);
+struct score		find_coords(struct maps maps, int **heatmap, struct token token, int fd); //remove fd
 
 #endif
