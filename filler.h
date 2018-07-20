@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/20 18:23:33 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/20 21:13:00 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ struct maps {
 	int	dim_tx;
 	int	dim_ty;
 	char c_piece;
+	char e_piece;
+	int c_flag;
+	int e_flag;
 };
 
 struct token {

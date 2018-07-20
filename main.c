@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/20 16:15:07 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/20 21:52:21 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <fcntl.h>
 int	main(void)
 {
-	int nrRows;
 	//char **map = NULL;
 	//char **t_map = NULL;
 	struct maps maps;
@@ -25,10 +24,9 @@ int	main(void)
 
 	//int i = 0;
 	//int j = 0;
-	nrRows = 0;
 	//map = NULL;
 	write(fd, "init map\n", 9);
-	maps = ft_init_map(nrRows, maps.map, maps.t_map);
+	maps = ft_init_map(0, maps.map, maps.t_map);
 	//printf("\n*****MAP*****\n");
 	//print_map(maps.map);
 	//printf("\n*****TOKEN*****\n");
@@ -42,7 +40,7 @@ int	main(void)
 	//printf("\n*****HEATMAP*****\n");
 	write(fd, "enem\n", 5);
 	heat = find_enemy_token(maps, heat);
-	//print_heatmap(maps, heat);
+	print_heatmap(maps, heat);
 	write(fd, "coords ", 7);
 	score = find_coords(maps, heat, ft_trim(maps),fd);
 	ft_putnbr(score.y);
@@ -88,8 +86,8 @@ int	main(void)
 		write(1, " ", 1);
 		ft_putnbr(score.x);
 		write(1, "\n", 1);
-		ft_strdel(maps.map);
-		ft_strdel(maps.t_map);
+		//ft_strdel(maps.map);
+		//ft_strdel(maps.t_map);
 		/*i = 0;
 		while (i < maps.dim_y)
 		{

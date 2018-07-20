@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   score.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 15:48:17 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/20 16:38:45 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/20 21:23:03 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ struct  score find_coords(struct maps maps, int **heatmap, struct token token, i
     score.x = 0;
     score.y = 0;
     i = 0;
-    while (i <= maps.dim_y - maps.dim_ty + token.row_top + token.row_bottom)
+    while (i < maps.dim_y - token.dim_y)
     {
         j = 0;
-        while (j <= maps.dim_x - maps.dim_tx + token.col_left + token.col_right)
+        while (j < maps.dim_x - token.dim_x)
         {
             coords.y = i;
             coords.x = j;
@@ -62,22 +62,18 @@ int     check_overlap(struct maps maps, int **heatmap, struct token token, struc
 {
     int i;
     int j;
-    int piece;
-    int flag;
     int count;
 
     i = 0;
     count = 0;
-    (maps.c_piece == 'x') ? (piece = -1) : (piece = -2);
-    (maps.c_piece == 'x') ? (flag = -2) : (flag = -1);
-    while (i < maps.dim_ty - token.row_top - token.row_bottom)
+    while (i < token.dim_y)
     {
         j = 0;
-        while (j < maps.dim_tx - token.col_left - token.col_right)
+        while (j < token.dim_x)
         {
-            if (maps.t_map[i + token.row_top][j + token.col_left] == '*' && heatmap[coords.y + i][coords.x + j] == piece)
+            if (maps.t_map[i + token.row_top][j + token.col_left] == '*' && heatmap[coords.y + i][coords.x + j] == maps.c_flag)
                 count++;
-            if ((maps.t_map[i + token.row_top][j + token.col_left] == '*' && heatmap[coords.y + i][coords.x + j] == flag) || count > 1) //Fail on enemny overlap
+            if ((maps.t_map[i + token.row_top][j + token.col_left] == '*' && heatmap[coords.y + i][coords.x + j] == maps.e_flag) || count > 1) //Fail on enemny overlap
                 return (0);
             j++;
         }
@@ -96,10 +92,10 @@ int calc_score(struct maps maps, int **heatmap, struct token token, struct coord
 
     i = 0;
     count = 0;
-    while (i < maps.dim_ty - token.row_top - token.row_bottom)
+    while (i < token.dim_y)
     {
         j = 0;
-        while (j < maps.dim_tx - token.col_left - token.col_right)
+        while (j < token.dim_x)
         {
             if (maps.t_map[i + token.row_top][j + token.col_left] == '*')
                 count += heatmap[coords.y + i][coords.x + j];
