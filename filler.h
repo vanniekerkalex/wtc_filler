@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <jde-agr@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/20 12:43:35 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/20 18:23:33 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ struct token {
 	int	col_left;
 	int	row_bottom;
 	int	col_right;
+	int	dim_x;
+	int dim_y;
 };
 
 struct score {

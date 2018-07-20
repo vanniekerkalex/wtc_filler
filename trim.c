@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:54:34 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/16 14:31:40 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/20 18:23:29 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ struct token	ft_trim(struct maps maps)
 	t = ft_trim_bottom(maps, t);
 	t = ft_trim_left(maps, t);
 	t = ft_trim_right(maps, t);
+	t.dim_x = maps.dim_tx - t.col_left - t.col_right;
+	t.dim_y = maps.dim_ty - t.row_top - t.row_bottom;
 	/*write(1,"Top: ", 5);
     ft_putnbr(t.row_top);
     write(1,"\nBot: ", 6);
