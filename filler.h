@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/20 21:13:00 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/21 20:44:06 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 struct maps {
 	char **map;
 	char **t_map;
+	int **heatmap;
 	int	dim_x;
 	int	dim_y;
 	int	dim_tx;
@@ -49,17 +50,21 @@ struct coords {
 };
 
 
-struct maps			ft_init_map(int nrRows, char **map, char **t_map);
-char				**ft_read_map(struct maps maps, int flag, char **map);
-struct maps			ft_read_token(struct maps maps, int t_nrRows, char **t_map);
-void				print_map(char **map);
-struct maps			ft_read_dim(struct maps maps, char **line, int flag);
+//struct maps			ft_init_map(struct maps maps);
+//struct maps			ft_read_map(struct maps maps, int flag);
+//struct maps			ft_read_token(struct maps maps);
+//void				print_map(char **map);
+//struct maps			ft_read_dim(struct maps maps, char **line, int flag);
 
 struct token		ft_trim(struct maps maps);
-int					**init_heatmap(struct maps maps);
-int					**find_enemy_token(struct maps maps, int **heatmap);
-void				print_heatmap(struct maps maps, int **heatmap);
+struct maps			init_heatmap(struct maps maps);
+struct maps			find_enemy_token(struct maps maps);
+void				print_heatmap(struct maps maps);
 int					check_boundary(struct maps maps, int tx, int ty);
-struct score		find_coords(struct maps maps, int **heatmap, struct token token, int fd); //remove fd
+struct score		find_coords(struct maps maps, struct token token);
+
+
+struct maps			init_struct(struct maps maps);
+struct maps			ft_read(struct maps maps, int flag);
 
 #endif

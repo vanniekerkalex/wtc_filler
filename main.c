@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <jde-agr@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 09:07:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/20 22:23:23 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/21 17:53:48 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,32 @@ int	main(void)
 	struct maps maps;
 	//struct maps tmp;
 	struct score score;
+	struct token token;
 	int fd = open("coords.txt", O_WRONLY);
 
 	//int i = 0;
 	//int j = 0;
 	//map = NULL;
 	write(fd, "init map\n", 9);
-	maps = ft_init_map(0, maps.map, maps.t_map);
+	maps.map = NULL;
+	maps.t_map = NULL;
+	maps = ft_init_map(maps);
 	//printf("\n*****MAP*****\n");
 	//print_map(maps.map);
 	//printf("\n*****TOKEN*****\n");
 	//print_map(maps.t_map);
 	//ft_trim(maps); // Testing Trim.c
-	int **heat;
 	//printf("\n*****INIT HEAT*****\n");
 	write(fd, "init heat\n", 10);
-	heat = init_heatmap(maps);
+	maps = init_heatmap(maps);
 	//print_heatmap(maps, heat);
 	//printf("\n*****HEATMAP*****\n");
 	write(fd, "enem\n", 5);
-	heat = find_enemy_token(maps, heat);
-	print_heatmap(maps, heat);
+	maps = find_enemy_token(maps);
+	print_heatmap(maps);
 	write(fd, "coords ", 7);
-	score = find_coords(maps, heat, ft_trim(maps),fd);
+	token = ft_trim(maps);
+	score = find_coords(maps, token, fd);
 	ft_putnbr(score.y);
 	write(1, " ", 1);
 	ft_putnbr(score.x);
@@ -65,8 +68,8 @@ int	main(void)
 //	printf("MAP\nX : %i\nY : %i\nTOKEN\nX : %i\nY : %i\n", maps.dim_x, maps.dim_y, maps.dim_tx, maps.dim_ty);
 	while (1)
 	{
-		maps.map = ft_read_map(maps, 1, maps.map);
-		maps = ft_read_token(maps, 2, maps.t_map);
+		maps = ft_read_map(maps, 1);
+		maps = ft_read_token(maps);
 	    //maps.t_map = tmp.t_map;
 	    //maps.dim_ty = tmp.dim_ty;
 	    //maps.dim_tx = tmp.dim_tx;
@@ -74,14 +77,14 @@ int	main(void)
 	    //print_map(maps.map);
 	    //printf("\n*****TOKEN*****\n");
 	    //print_map(maps.t_map);
-		ft_trim(maps); // Testing Trim.c
+		token = ft_trim(maps); // Testing Trim.c
 		//printf("\n*****INIT HEAT*****\n");
-		heat = init_heatmap(maps);
+		maps = init_heatmap(maps);
 		//print_heatmap(maps, heat);
 		//printf("\n*****HEATMAP*****\n");
-		heat = find_enemy_token(maps, heat);
-		//print_heatmap(maps, heat);
-		score = find_coords(maps, heat, ft_trim(maps), fd);
+		maps = find_enemy_token(maps);
+		print_heatmap(maps);
+		score = find_coords(maps, token, fd);
 		ft_putnbr(score.y);
 		write(1, " ", 1);
 		ft_putnbr(score.x);

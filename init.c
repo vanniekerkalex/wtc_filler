@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:35:29 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/20 21:47:00 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/21 13:06:54 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ struct maps		ft_player(char **line, struct maps maps)
 		maps = set_players(maps, 1);
 	else
 		maps = set_players(maps, 0);
-	//write(1, "hi", 2);		//just to see
-	//write(1, &maps.c_piece, 1);	//if piece is 'o' or 'x'
 	return (maps);
 }
 
-struct maps	ft_init_map(int nrRows, char **map, char **t_map)
+struct maps	ft_init_map(struct maps maps)
 {
 	int			ret;
 	char		**line;
-	struct maps	maps;
 
 	line = NULL;
 	maps.c_piece = '\0';
@@ -44,8 +41,8 @@ struct maps	ft_init_map(int nrRows, char **map, char **t_map)
 	maps.map = NULL;
 	maps.t_map = NULL;
 	maps = ft_read_dim(maps, line, 0);
-	maps.map = ft_read_map(maps, 0, map);
-	maps = ft_read_token(maps, nrRows, t_map);
+	maps = ft_read_map(maps, 0);
+	maps = ft_read_token(maps);
 	return (maps);
 }
 
