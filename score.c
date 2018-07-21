@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 15:48:17 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/20 21:23:03 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/20 22:08:36 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct  score find_coords(struct maps maps, int **heatmap, struct token token, i
             //if(check_boundary(maps, j + maps.dim_tx - token.col_right - token.col_left, i + maps.dim_ty - token.row_bottom - token.row_top))
                 if (check_overlap(maps, heatmap, token, coords))
                 {
-                    write(fd,"overlap\n",8);
+
                     if ((calc = calc_score(maps, heatmap, token, coords)) > score.score)
                     {
                         score.score = calc;
@@ -46,6 +46,7 @@ struct  score find_coords(struct maps maps, int **heatmap, struct token token, i
                         ft_putnbr_fd(score.score, fd);
                     }
                 }
+				write(fd,"overlap\n",8);
             j++;
         }
         i++;
