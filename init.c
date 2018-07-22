@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/22 13:01:55 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 14:10:28 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 15:11:04 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,6 @@ void	ft_read_dim(t_maps *maps, char *line, int flag)
 		maps->dim_ty = ft_atoi(tmp[1]);
 		maps->dim_tx = ft_atoi(tmp[2]);
 	}
-}
-
-char		**ft_pop_map(char **map, int rows, int flag)
-{
-	int		i;
-	int		j;
-	int		bound;
-	char	*line;
-
-	i = 0;
-	while (i < rows)
-	{
-		get_next_line(0, &line); //start of -> and x and o
-		if (flag == 1 || flag == 0) //if map then jump 4 units to right
-			line = line + 4;
-		j = 0;
-		bound = ft_strlen(line);
-		while (j < bound)
-		{
-			map[i][j] = *(line + j);
-			j++;
-		}
-		//ft_strdel(&line);
-		map[i][j] = '\0';
-		i++;
-	}
-	map[i] = NULL;
-	return (map);
 }
 
 t_maps	*init_struct()

@@ -6,7 +6,7 @@
 /*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:56:42 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/22 13:37:24 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 14:29:30 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void ft_read_player(t_maps *maps)
 void	ft_read_map(t_maps *maps, int flag)
 {
 	int		i;
+	int		j;
 	char	*line;
 
 	i = 0;
@@ -49,38 +50,49 @@ void	ft_read_map(t_maps *maps, int flag)
 	//ft_strdel(&line);
 	get_next_line(0, &line); // numbers
 	//ft_strdel(&line);
-
 	maps->map = (char**)malloc(sizeof(char*) * (maps->dim_y + 1));
 	while (i < maps->dim_y)
 	{
 		maps->map[i] = (char*)malloc(sizeof(char) * (maps->dim_x + 1));
+		get_next_line(0, &line);
+		line = line + 4;
+		j = 0;
+		while (j < maps->dim_x)
+		{
+			maps->map[i][j] = *(line + j);
+			j++;
+		}
+		maps->map[i][j] = '\0';
 		i++;
 	}
-	write(2,"before pop_map\n",15);
-	maps->map = ft_pop_map(maps->map, maps->dim_y, flag);
-	write(2,"after pop_map\n",14);
+	maps->map[i] = NULL;
 }
 
 void	ft_read_token(t_maps *maps, int flag)
 {
 	int		i;
+	int		j;
 	char	*line;
 
 	i = 0;
 	get_next_line(0, &line); //Piece
 	ft_read_dim(maps, line, flag);
-
 	//ft_strdel(&line);
-
 	maps->t_map = (char**)malloc(sizeof(char*) * (maps->dim_ty + 1));
 	while (i < maps->dim_ty)
 	{
 		maps->t_map[i] = (char*)malloc(sizeof(char) * (maps->dim_tx + 1));
+		get_next_line(0, &line);
+		j = 0;
+		while (j < maps->dim_tx)
+		{
+			maps->t_map[i][j] = *(line + j);
+			j++;
+		}
+		maps->t_map[i][j] = '\0';
 		i++;
 	}
-	write(2,"t: before pop_map\n",18);
-	maps->t_map = ft_pop_map(maps->t_map, maps->dim_ty, flag);
-	write(2,"t: after pop_map\n",17);
+	maps->t_map[i] = NULL;
 }
 
 void set_players(t_maps *maps, int flag)

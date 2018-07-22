@@ -6,7 +6,7 @@
 /*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:06:15 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/22 13:32:13 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 14:25:10 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ t_maps		*init_struct();
 t_token		*init_struct_token();
 void		ft_read(t_maps *maps, int flag);
 void		ft_read_dim(t_maps *maps, char *line, int flag);
-char		**ft_pop_map(char **map, int rows, int flag);
 
 #endif

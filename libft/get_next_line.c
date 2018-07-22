@@ -3,59 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 12:49:24 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/06/18 12:58:17 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/22 15:11:03 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_line(int const fd, char *buf, char *saved[fd])
+static int	ft_gnl(char buf[BUFF_SIZE + 1], char **l, int *r, const int fd)
 {
-	int		ret;
-	char	*car;
-	char	*tmp;
+	int	i;
+	int j;
 
-	while ((car = ft_strchr(buf, '\n')) == NULL &&
-			(ret = read(fd, buf, BUFF_SIZE)) > 0)
+	i = -1;
+	while (*r > 0)
 	{
-		buf[ret] = '\0';
-		tmp = saved[fd];
-		saved[fd] = ft_strjoin(tmp, buf);
-		ft_strdel(&tmp);
+		j = 0;
+		while (j < *r)
+		{
+			(*l)[++i] = buf[j++];
+			if ((*l)[i] == '\n')
+			{
+				ft_strcpy(&buf[0], &buf[j]);
+				(*l)[i] = '\0';
+				return (1);
+			}
+		}
+		*r = read(fd, &buf[0], BUFF_SIZE);
+		buf[*r] = 0;
 	}
-	ft_strdel(&buf);
-	if (ret == -1)
-		return (-1);
-	return (1);
+	if (i >= 0)
+		return (1);
+	else
+		return (0);
 }
 
-int			get_next_line(int const fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
-	static char	*save[MAX_FD];
-	char		*buffer;
-	int			ret;
-	char		*str;
-	char		*tmp;
+	static char		buf[1000][BUFF_SIZE + 1];
+	int				ret;
+	int				i;
 
-	buffer = ft_strnew(BUFF_SIZE);
-	if (fd < 0 || line == NULL || buffer == NULL || BUFF_SIZE < 1)
+	if (!line || fd < 0 || (read(fd, NULL, 0) < 0))
 		return (-1);
-	if (save[fd] == NULL)
-		save[fd] = ft_strnew(0);
-	if ((ret = get_line(fd, buffer, save)) == -1)
+	if (!(*line = ft_strnew(52001)))
 		return (-1);
-	if ((str = ft_strchr(save[fd], '\n')) != NULL)
-	{
-		*line = ft_strsub(save[fd], 0, str - save[fd]);
-		tmp = save[fd];
-		save[fd] = ft_strdup(str + 1);
-		ft_strdel(&tmp);
+	ret = ft_strlen(&buf[fd][0]);
+	if (!ret)
+		ret = read(fd, &buf[fd][0], BUFF_SIZE);
+	buf[fd][ret] = 0;
+	i = ft_gnl((char*)(buf[fd]), &*line, &ret, fd);
+	if (ft_strlen(*line) > 0 || i == 1)
 		return (1);
-	}
-	*line = ft_strdup(save[fd]);
-	ft_strdel(&save[fd]);
-	return (ft_strlen(*line) > 0 ? 1 : 0);
+	return (ret);
 }
