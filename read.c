@@ -6,7 +6,7 @@
 /*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:56:42 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/22 13:06:09 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 13:37:24 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	ft_read_map(t_maps *maps, int flag)
 		maps->map[i] = (char*)malloc(sizeof(char) * (maps->dim_x + 1));
 		i++;
 	}
+	write(2,"before pop_map\n",15);
 	maps->map = ft_pop_map(maps->map, maps->dim_y, flag);
+	write(2,"after pop_map\n",14);
 }
 
 void	ft_read_token(t_maps *maps, int flag)
@@ -76,7 +78,9 @@ void	ft_read_token(t_maps *maps, int flag)
 		maps->t_map[i] = (char*)malloc(sizeof(char) * (maps->dim_tx + 1));
 		i++;
 	}
+	write(2,"t: before pop_map\n",18);
 	maps->t_map = ft_pop_map(maps->t_map, maps->dim_ty, flag);
+	write(2,"t: after pop_map\n",17);
 }
 
 void set_players(t_maps *maps, int flag)

@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/22 13:01:55 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 13:06:04 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 14:10:28 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	ft_read_dim(t_maps *maps, char *line, int flag)
 char		**ft_pop_map(char **map, int rows, int flag)
 {
 	int		i;
-	size_t	j;
-	size_t	bound;
+	int		j;
+	int		bound;
 	char	*line;
 
 	i = 0;
