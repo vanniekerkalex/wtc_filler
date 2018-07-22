@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 17:54:23 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 13:32:08 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 15:36:42 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	main(void)
 {
-	//puts("0 0");
+
 	t_maps *maps;
 	maps = init_struct();
 
@@ -51,6 +51,9 @@ int	main(void)
 		ft_putchar_fd(' ', 1);
 		ft_putnbr_fd(maps->score_x, 1);
 		ft_putchar_fd('\n', 1);
+
+		if (maps->score_x == 0 && maps->score_y == 0 && maps->score == 0)
+			break ;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 15:48:17 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 13:35:10 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 15:25:06 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int check_overlap(t_maps *maps, t_token *token);
 int calc_score(t_maps *maps, t_token *token);
+void	zero_scores(t_maps *maps);
 
 void	find_coords(t_maps *maps, t_token *token)
 {
@@ -23,10 +24,7 @@ void	find_coords(t_maps *maps, t_token *token)
 	int j;
 	int calc;
 
-	maps->score = 0;
-	maps->score_x = 0;
-	maps->score_y = 0;
-	
+	zero_scores(maps);
 	i = 0;
 	while (i < maps->dim_y - token->dim_y)
 	{
@@ -35,23 +33,13 @@ void	find_coords(t_maps *maps, t_token *token)
 		{
 			maps->coords_y = i;
 			maps->coords_x = j;
-			//if(check_boundary(maps, j + maps->dim_tx - token->col_right - token->col_left, i + maps->dim_ty - token->row_bottom - token->row_top))
 			if (check_overlap(maps, token))
-			{
 				if ((calc = calc_score(maps, token)) > maps->score)
 				{
 					maps->score = calc;
 					maps->score_x = j - token->col_left;
 					maps->score_y = i - token->row_top;
-					write(2, "----------\n",11);
-					ft_putnbr_fd(maps->score_y,2);
-					ft_putchar_fd(' ',2);
-					ft_putnbr_fd(maps->score_x,2);
-					ft_putchar_fd(' ',2);
-					ft_putnbr_fd(maps->score,2);
-					ft_putchar_fd('\n',2);
 				}
-			}
 			j++;
 		}
 		i++;
@@ -104,4 +92,11 @@ int calc_score(t_maps *maps, t_token *token)
         i++;
     }
     return (count);
+}
+
+void	zero_scores(t_maps *maps)
+{
+	maps->score = 0;
+	maps->score_x = 0;
+	maps->score_y = 0;
 }
