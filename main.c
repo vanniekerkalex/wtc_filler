@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 17:54:23 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 12:21:11 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 12:55:21 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(void)
 	//puts("0 0");
 	t_maps *maps;
 	maps = init_struct();
+
 	t_token *token;
 	token = init_struct_token();
 
@@ -31,10 +32,10 @@ int	main(void)
 
 	ft_strdel(maps->t_map);
 
-	ft_putnbr(maps->score_y);
-	write(1, " ", 1);
-	ft_putnbr(maps->score_x);
-	write(1, "\n", 1);
+	ft_putnbr_fd(maps->score_y, 1);
+	ft_putchar_fd(' ', 1);
+	ft_putnbr_fd(maps->score_x, 1);
+	ft_putchar_fd('\n', 1);
 
 	while (1)
 	{
@@ -46,10 +47,10 @@ int	main(void)
 
 		ft_strdel(maps->t_map);
 
-		ft_putnbr(maps->score_y);
-		write(1, " ", 1);
-		ft_putnbr(maps->score_x);
-		write(1, "\n", 1);
+		ft_putnbr_fd(maps->score_y, 1);
+		ft_putchar_fd(' ', 1);
+		ft_putnbr_fd(maps->score_x, 1);
+		ft_putchar_fd('\n', 1);
 	}
 	return (0);
 }

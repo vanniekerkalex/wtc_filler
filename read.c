@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read2.c                                            :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:56:42 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/22 12:31:30 by avan-ni          ###   ########.fr       */
+/*   Updated: 2018/07/22 12:56:07 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void ft_read_player(t_maps *maps)
 		set_players(maps, 1);
 	else
 		set_players(maps, 0);
+	//ft_strdel(&line);
 }
 
 void	ft_read_map(t_maps *maps, int flag)
@@ -49,7 +50,10 @@ void	ft_read_map(t_maps *maps, int flag)
 	get_next_line(0, &line); //Plateau
 	if (flag == 0)
 		ft_read_dim(maps, line, flag);
+	//ft_strdel(&line);
 	get_next_line(0, &line); // numbers
+	//ft_strdel(&line);
+
 	maps->map = (char**)malloc(sizeof(char*) * (maps->dim_y + 1));
 	while (i < maps->dim_y)
 	{
@@ -67,6 +71,9 @@ void	ft_read_token(t_maps *maps, int flag)
 	i = 0;
 	get_next_line(0, &line); //Piece
 	ft_read_dim(maps, line, flag);
+
+	//ft_strdel(&line);
+
 	maps->t_map = (char**)malloc(sizeof(char*) * (maps->dim_ty + 1));
 	while (i < maps->dim_ty)
 	{
@@ -131,6 +138,7 @@ char		**ft_pop_map(char **map, int rows, int flag)
 			map[i][j] = *(line + j);
 			j++;
 		}
+		//ft_strdel(&line);
 		map[i][j] = '\0';
 		i++;
 	}
