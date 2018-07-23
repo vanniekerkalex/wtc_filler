@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   trim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/15 15:54:34 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 12:26:26 by avan-ni          ###   ########.fr       */
+/*   Created: 2018/07/22 16:32:26 by jde-agr           #+#    #+#             */
+/*   Updated: 2018/07/22 16:32:37 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <unistd.h>
 
 void	ft_trim_top(t_maps *maps, t_token *t);
 void	ft_trim_bottom(t_maps *maps, t_token *t);

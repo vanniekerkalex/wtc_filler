@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/22 13:01:55 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 15:11:04 by avan-ni          ###   ########.fr       */
+/*   Created: 2018/07/22 16:11:36 by jde-agr           #+#    #+#             */
+/*   Updated: 2018/07/22 16:12:59 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void	ft_read_dim(t_maps *maps, char *line, int flag)
 	}
 }
 
-t_maps	*init_struct()
+t_maps	*init_struct(void)
 {
 	t_maps *map;
-  	map = (t_maps *)malloc(sizeof(t_maps));
+
+	map = (t_maps *)malloc(sizeof(t_maps));
 	map->map = NULL;
 	map->t_map = NULL;
 	map->heatmap = NULL;
@@ -57,10 +58,11 @@ t_maps	*init_struct()
 	return (map);
 }
 
-t_token	*init_struct_token()
+t_token	*init_struct_token(void)
 {
 	t_token *t;
-  	t = (t_token *)malloc(sizeof(t_token));
+
+	t = (t_token *)malloc(sizeof(t_token));
 	t->row_top = 0;
 	t->col_left = 0;
 	t->row_bottom = 0;

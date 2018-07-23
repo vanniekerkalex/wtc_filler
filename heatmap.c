@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   heatmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-ni <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 19:51:10 by avan-ni           #+#    #+#             */
-/*   Updated: 2018/07/22 12:26:43 by avan-ni          ###   ########.fr       */
+/*   Created: 2018/07/22 16:07:59 by jde-agr           #+#    #+#             */
+/*   Updated: 2018/07/22 16:11:11 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-/* Duplicates maps into heatmap */
 void	fill_heatmap(t_maps *maps, int y, int x);
 void	print_heatmap(t_maps *maps);
 int		check_boundary(t_maps *maps, int tx, int ty);
 
-void init_heatmap(t_maps *maps)
+void	init_heatmap(t_maps *maps)
 {
 	int i;
 	int j;
@@ -41,7 +40,7 @@ void init_heatmap(t_maps *maps)
 	}
 }
 
-void find_enemy_token(t_maps *maps)
+void	find_enemy_token(t_maps *maps)
 {
 	int i;
 	int j;
@@ -60,7 +59,7 @@ void find_enemy_token(t_maps *maps)
 	}
 }
 
-void fill_heatmap(t_maps *maps, int y, int x)
+void	fill_heatmap(t_maps *maps, int y, int x)
 {
 	int max;
 	int i;
@@ -73,25 +72,25 @@ void fill_heatmap(t_maps *maps, int y, int x)
 	{
 		ty = y + i;
 		tx = x + i;
-		while (ty >= y - i) // Loop 1 - up
+		while (ty >= y - i)
 		{
 			(check_boundary(maps, tx, ty) && maps->heatmap[ty][tx] >= 0 && maps->heatmap[ty][tx] <= max - i) && (maps->heatmap[ty][tx] = max - i);
 			ty--;
 		}
 		ty++;
-		while (tx >= x - i) // Loop 2 - left
+		while (tx >= x - i)
 		{
 			(check_boundary(maps, tx, ty) && maps->heatmap[ty][tx] >= 0 && maps->heatmap[ty][tx] <= max - i) && (maps->heatmap[ty][tx] = max - i);
 			tx--;
 		}
 		tx++;
-		while (ty <= y + i) // Loop 3 - down
+		while (ty <= y + i)
 		{
-			(check_boundary(maps, tx, ty) && maps->heatmap[ty][tx] >= 0 && maps->heatmap[ty][tx] <= max - i) && (maps->heatmap[ty][tx] = max - i); //
+			(check_boundary(maps, tx, ty) && maps->heatmap[ty][tx] >= 0 && maps->heatmap[ty][tx] <= max - i) && (maps->heatmap[ty][tx] = max - i);
 			ty++;
 		}
 		ty--;
-		while (tx <= x + i) // Loop 4 - right
+		while (tx <= x + i)
 		{
 			(check_boundary(maps, tx, ty) && maps->heatmap[ty][tx] >= 0 && maps->heatmap[ty][tx] <= max - i) && (maps->heatmap[ty][tx] = max - i);
 			tx++;
@@ -101,15 +100,15 @@ void fill_heatmap(t_maps *maps, int y, int x)
 	}
 }
 
-int	check_boundary(t_maps *maps, int tx, int ty)
+int		check_boundary(t_maps *maps, int tx, int ty)
 {
 	if (tx < maps->dim_x && tx >= 0 && ty < maps->dim_y && ty >= 0)
-		return(1);
+		return (1);
 	else
 		return (0);
 }
 
-void print_heatmap(t_maps *maps)
+void	print_heatmap(t_maps *maps)
 {
 	int i;
 	int j;
@@ -123,7 +122,7 @@ void print_heatmap(t_maps *maps)
 			ft_putnbr(maps->heatmap[i][j++]);
 			write(1, " ", 1);
 		}
-		write(1,"\n", 1);
+		write(1, "\n", 1);
 		i++;
 	}
 }

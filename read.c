@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/21 13:56:42 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/22 14:29:30 by avan-ni          ###   ########.fr       */
+/*   Created: 2018/07/22 16:24:06 by jde-agr           #+#    #+#             */
+/*   Updated: 2018/07/22 16:24:40 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,15 @@ void	ft_read(t_maps *maps, int flag)
 	ft_read_token(maps, 2);
 }
 
-void ft_read_player(t_maps *maps)
+void	ft_read_player(t_maps *maps)
 {
 	char	*line;
 
-	get_next_line(0, &line); //Player
+	get_next_line(0, &line);
 	if (ft_strncmp(ft_strchr(line, ':') - 2, "1", 1) == 0)
 		set_players(maps, 1);
 	else
 		set_players(maps, 0);
-	//ft_strdel(&line);
 }
 
 void	ft_read_map(t_maps *maps, int flag)
@@ -44,12 +43,10 @@ void	ft_read_map(t_maps *maps, int flag)
 	char	*line;
 
 	i = 0;
-	get_next_line(0, &line); //Plateau
+	get_next_line(0, &line);
 	if (flag == 0)
 		ft_read_dim(maps, line, flag);
-	//ft_strdel(&line);
-	get_next_line(0, &line); // numbers
-	//ft_strdel(&line);
+	get_next_line(0, &line);
 	maps->map = (char**)malloc(sizeof(char*) * (maps->dim_y + 1));
 	while (i < maps->dim_y)
 	{
@@ -75,9 +72,8 @@ void	ft_read_token(t_maps *maps, int flag)
 	char	*line;
 
 	i = 0;
-	get_next_line(0, &line); //Piece
+	get_next_line(0, &line);
 	ft_read_dim(maps, line, flag);
-	//ft_strdel(&line);
 	maps->t_map = (char**)malloc(sizeof(char*) * (maps->dim_ty + 1));
 	while (i < maps->dim_ty)
 	{
@@ -95,7 +91,7 @@ void	ft_read_token(t_maps *maps, int flag)
 	maps->t_map[i] = NULL;
 }
 
-void set_players(t_maps *maps, int flag)
+void	set_players(t_maps *maps, int flag)
 {
 	if (flag == 1)
 	{
