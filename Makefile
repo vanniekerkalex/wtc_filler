@@ -6,7 +6,7 @@
 #    By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/23 12:54:40 by jde-agr           #+#    #+#              #
-#    Updated: 2018/07/23 14:38:43 by jde-agr          ###   ########.fr        #
+#    Updated: 2018/07/23 15:25:30 by jde-agr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,10 @@ LIB = libft/libft.a
 HEADERS = -I includes/ -I libft/includes
 
 $(NAME):
+	make fclean
+	make fclean -C libft/
+	make -C libft/
+	make clean -C libft/
 	gcc $(FLAGS) $(SRCS) $(HEADERS) -c
 	gcc $(FLAGS) $(OBJS) $(LIB) -o players/$(NAME)
 	make clean
@@ -33,6 +37,6 @@ clean :
 	rm -rf $(OBJS)
 
 fclean : clean
-	rm -rf $(NAME)
+	rm -rf players/$(NAME)
 
 re : fclean all
