@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/22 16:13:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/23 16:45:30 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/23 18:02:54 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #include <stdio.h>
 
 void	do_loop(t_maps *maps, t_token *token);
+void	do_loop_small(t_maps *maps);
 void	print_map(t_maps *maps, int fd);
 
 int		main(void)
 {
 	t_maps	*maps;
 	t_token	*token;
+	char	*line;
 
 	maps = init_struct();
 	token = init_struct_token();
@@ -32,7 +34,11 @@ int		main(void)
 		print_map(maps, 2);
 		do_loop(maps, token);
 		if (maps->score_x == 0 && maps->score_y == 0 && maps->score == 0)
+		{
+			while(get_next_line(0, &line))
+				do_loop_small(maps);
 			break ;
+		}
 	}
 	return (0);
 }
@@ -43,6 +49,17 @@ void	do_loop(t_maps *maps, t_token *token)
 	find_enemy_token(maps);
 	ft_trim(maps, token);
 	find_coords(maps, token);
+	ft_strdel(maps->t_map);
+	ft_putnbr_fd(maps->score_y, 1);
+	ft_putchar_fd(' ', 1);
+	ft_putnbr_fd(maps->score_x, 1);
+	ft_putchar_fd('\n', 1);
+}
+
+void	do_loop_small(t_maps *maps)
+{
+	ft_read(maps, 1);
+	print_map(maps, 2);
 	ft_strdel(maps->t_map);
 	ft_putnbr_fd(maps->score_y, 1);
 	ft_putchar_fd(' ', 1);
