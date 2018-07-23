@@ -6,7 +6,7 @@
 #    By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/23 12:54:40 by jde-agr           #+#    #+#              #
-#    Updated: 2018/07/23 13:19:23 by jde-agr          ###   ########.fr        #
+#    Updated: 2018/07/23 14:38:43 by jde-agr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,19 +14,25 @@ NAME = jde-agr.filler
 
 FLAGS = -W -Wall -Werror -Wextra
 
-SRCS = *.c
+SRCS = srcs/*.c
 
 OBJS = *.o
 
 LIB = libft/libft.a
 
-HEADERS = filler.h -I libft/includes
+HEADERS = -I includes/ -I libft/includes
 
 $(NAME):
 	gcc $(FLAGS) $(SRCS) $(HEADERS) -c
-	gcc $(FLAGS) $(OBJS) $(LIB) -o $(NAME)
+	gcc $(FLAGS) $(OBJS) $(LIB) -o players/$(NAME)
+	make clean
 
 all : $(NAME)
 
 clean :
+	rm -rf $(OBJS)
+
+fclean : clean
 	rm -rf $(NAME)
+
+re : fclean all
