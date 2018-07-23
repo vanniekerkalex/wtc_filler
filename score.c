@@ -6,7 +6,7 @@
 /*   By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/22 16:25:03 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/23 12:15:12 by jde-agr          ###   ########.fr       */
+/*   Updated: 2018/07/23 13:21:15 by jde-agr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ int		check_overlap(t_maps *maps, t_token *token)
 		while (j < token->dim_x)
 		{
 			if (maps->t_map[i + token->row_top][j + token->col_left] == '*' &&
-					maps->heatmap[maps->coords_y + i][maps->coords_x + j] == maps->c_flag)
+	maps->heatmap[maps->coords_y + i][maps->coords_x + j] == maps->c_flag)
 				count++;
 			if ((maps->t_map[i + token->row_top][j + token->col_left] == '*' &&
-						maps->heatmap[maps->coords_y + i][maps->coords_x + j] == maps->e_flag) || count > 1)
+						maps->heatmap[maps->coords_y + i]
+						[maps->coords_x + j] == maps->e_flag) || count > 1)
 				return (0);
 			j++;
 		}
