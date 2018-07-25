@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-agr <avan-ni@student.wethinkcode.co.za>+#+  +:+       +#+        */
+/*   By: avan-ni <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/22 16:13:26 by jde-agr           #+#    #+#             */
-/*   Updated: 2018/07/23 18:02:54 by avan-ni          ###   ########.fr       */
+/*   Created: 2018/07/25 11:58:45 by avan-ni           #+#    #+#             */
+/*   Updated: 2018/07/25 12:01:43 by avan-ni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
 
 void	do_loop(t_maps *maps, t_token *token);
 void	do_loop_small(t_maps *maps);
@@ -35,7 +34,7 @@ int		main(void)
 		do_loop(maps, token);
 		if (maps->score_x == 0 && maps->score_y == 0 && maps->score == 0)
 		{
-			while(get_next_line(0, &line))
+			while (get_next_line(0, &line))
 				do_loop_small(maps);
 			break ;
 		}

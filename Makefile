@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jde-agr <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: avan-ni <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/07/23 12:54:40 by jde-agr           #+#    #+#              #
-#    Updated: 2018/07/24 12:37:45 by jde-agr          ###   ########.fr        #
+#    Created: 2018/07/25 11:56:39 by avan-ni           #+#    #+#              #
+#    Updated: 2018/07/25 11:56:58 by avan-ni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = jde-agr.filler
+NAME = van-ni.filler
 
 FLAGS = -W -Wall -Werror -Wextra
 
