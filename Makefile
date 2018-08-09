@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = van-ni.filler
+NAME = avan-ni.filler
 
 FLAGS = -W -Wall -Werror -Wextra
 
