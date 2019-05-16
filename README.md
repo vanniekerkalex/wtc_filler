@@ -1,4 +1,4 @@
-![](filler.png)
+![](filler.PNG)
 
 # Filler
 Code a "player" that will beat the opponent in a game of domination of 2D-space.
